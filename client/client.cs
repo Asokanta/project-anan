@@ -166,6 +166,11 @@ namespace client
 
 
                     break;
+                case 3: // leave server
+                    PlyArray = new Player[0];
+                    serv = new Server(null, 0, null);
+                    Console.WriteLine("Disconnected from server.");
+                    break;
                 default:
                     break;
             }

@@ -15,3 +15,20 @@ D:\c-sharp\server\obj\Debug\net6.0\server.pdb
 D:\c-sharp\server\obj\Debug\net6.0\server.genruntimeconfig.cache
 D:\c-sharp\server\obj\Debug\net6.0\ref\server.dll
 D:\c-sharp\server\bin\Debug\net6.0\Network.dll
+D:\csharp yedek\server\bin\Debug\net6.0\server.exe
+D:\csharp yedek\server\bin\Debug\net6.0\server.deps.json
+D:\csharp yedek\server\bin\Debug\net6.0\server.runtimeconfig.json
+D:\csharp yedek\server\bin\Debug\net6.0\server.dll
+D:\csharp yedek\server\bin\Debug\net6.0\server.pdb
+D:\csharp yedek\server\bin\Debug\net6.0\Network.dll
+D:\csharp yedek\server\obj\Debug\net6.0\server.csproj.AssemblyReference.cache
+D:\csharp yedek\server\obj\Debug\net6.0\server.GeneratedMSBuildEditorConfig.editorconfig
+D:\csharp yedek\server\obj\Debug\net6.0\server.AssemblyInfoInputs.cache
+D:\csharp yedek\server\obj\Debug\net6.0\server.AssemblyInfo.cs
+D:\csharp yedek\server\obj\Debug\net6.0\server.csproj.CoreCompileInputs.cache
+D:\csharp yedek\server\obj\Debug\net6.0\server.csproj.CopyComplete
+D:\csharp yedek\server\obj\Debug\net6.0\server.dll
+D:\csharp yedek\server\obj\Debug\net6.0\refint\server.dll
+D:\csharp yedek\server\obj\Debug\net6.0\server.pdb
+D:\csharp yedek\server\obj\Debug\net6.0\server.genruntimeconfig.cache
+D:\csharp yedek\server\obj\Debug\net6.0\ref\server.dll

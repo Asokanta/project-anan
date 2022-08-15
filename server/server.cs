@@ -13,6 +13,8 @@ namespace server
         private State state = new State();
         private EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
         private AsyncCallback recv = null;
+        public bool socketReady = false;
+        public UdpClient udpSClient;
 
         private int maxPlayers;
         private int playerCount;
@@ -57,19 +59,44 @@ namespace server
             _socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
             _socket.Bind(new IPEndPoint(IPAddress.Parse(address), port));
             servIP = new IPEndPoint(IPAddress.Parse(address), port);
+            socketReady = true;
+            udpSClient = new UdpClient(port); // client to send data to other clients
             Receive();
         }
 
 
-        public void Send(string text)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(text);
-            _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (ar) =>
+      //  public void Send(string text)
+      //  {
+      //
+      //      bool send() { Console.WriteLine("SEND: {0}", text); return true; }
+      //      if (send()){
+      //
+      //          byte[] data = Encoding.UTF8.GetBytes(text);
+      //          _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (ar) =>
+      //          {
+      //              State so = (State)ar.AsyncState;
+      //              int bytes = _socket.EndSend(ar);
+      //
+      //          }, state);
+      //
+      //      }
+      //
+      //  }
+
+        public void sendToOnlineClients(UdpClient sClient, string data, int exceptID = 0) {
+
+            for (int x = 1; x < PlyArray.Count(); x++)
             {
-                State so = (State)ar.AsyncState;
-                int bytes = _socket.EndSend(ar);
-                Console.WriteLine("SEND: {0}, {1}", bytes, text);
-            }, state);
+
+                if (PlyArray[x].getPlayerID() >= 1 && x != exceptID)
+                {
+                    byte[] senddata = Encoding.UTF8.GetBytes(data);
+                    sClient.Send(senddata, senddata.Length, PlyArray[x].ip);
+                    Console.WriteLine("SEND: {0}, {1}, {2}", data, senddata.Length, PlyArray[x].ip);
+                }
+
+            }
+
         }
 
         private void functionCallback(string data, IPEndPoint ieClient, UdpClient servClient)
@@ -127,32 +154,22 @@ namespace server
 
 
 
+
+
                         // tell online clients someone is connected.
-                        for (int x = 1; x < PlyArray.Count(); x++)
-                       {                                         
 
+                        string sendit = 2 + sep +
+                            (int)returnMessages.SUCCESS + sep +
+                            PlyArray[newPlyID].getPlayerID() + sep +
+                            PlyArray[newPlyID].nickname + sep +
+                            PlyArray[newPlyID].posX + sep +
+                            PlyArray[newPlyID].posY + sep +
+                            PlyArray[newPlyID].posZ + sep +
+                            PlyArray[newPlyID].rot + sep +
+                            PlyArray[newPlyID].ping;
 
-                            if (PlyArray[x].getPlayerID() >= 1 && x != newPlyID)
-                           {
+                        sendToOnlineClients(servClient, sendit, newPlyID);  // string, except this id
 
-
-
-                                string sendit = 2 + sep +
-                                    (int) returnMessages.SUCCESS + sep +
-                                    PlyArray[newPlyID].getPlayerID() + sep +
-                                    PlyArray[newPlyID].nickname + sep +
-                                    PlyArray[newPlyID].posX + sep +
-                                    PlyArray[newPlyID].posY + sep +
-                                    PlyArray[newPlyID].posZ + sep +
-                                    PlyArray[newPlyID].rot + sep +
-                                    PlyArray[newPlyID].ping;
-                                byte[] senddata = Encoding.UTF8.GetBytes(sendit);
-                                servClient.Send(senddata, senddata.Length, PlyArray[x].ip);
-
-                            }        
-                                                                 
-                       }
-                      
 
                     }
                     else
@@ -210,6 +227,11 @@ namespace server
                         PlyArray[plyID].ping;
 
                     break;
+                case 3: // leave server -- no need for player id. we can get player from his ip.??
+                    int ply = int.Parse(args[1]);
+                    PlyArray[ply] = new Player();
+                    Console.WriteLine("Player " + ply + " left the server.");
+                    break;
                 default:
                     break;
             }
@@ -218,6 +240,7 @@ namespace server
            {
                byte[] senddata = Encoding.UTF8.GetBytes(dataToSend[0]);
                servClient.Send(senddata, senddata.Length, playerToSend[0]);
+               Console.WriteLine("SEND: {0}, {1}, {2}", dataToSend[0], senddata.Length, playerToSend[0]);
            }
             
 
@@ -228,7 +251,6 @@ namespace server
         private void Receive()
         {
 
-            UdpClient udpSClient = new UdpClient(27000); // client to send data to other clients
 
             _socket.BeginReceiveFrom(state.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv = (ar) =>
             {
@@ -255,18 +277,77 @@ namespace server
     {
         static void Main(string[] args)
         {
+
+            // read server config here
+
+
             UDPSocket s = new UDPSocket(64, "Anan's Server"); // 64 is max players server will accept in.
-
-            s.Server("127.0.0.1", 27000);
-
+        //    s.Server("127.0.0.1", 27000);
 
 
+               while (true)
+               {
+                   string input = Console.ReadLine();
+                   input = input.ToLower();
+                   if (input == "restart") // remove clients
+                   {
+                       try
+                       {
+                        // first send last packets - TODO: Tell clients server is restarting!
+                           s.sendToOnlineClients(s.udpSClient, "3☺3");
+                           s._socket.Shutdown(SocketShutdown.Both);
+                       }
+                       finally
+                       {
+                           s.udpSClient.Close();
+                           s._socket.Close();
+                           s = new UDPSocket(64, "Anan's Server");
+                           s.Server("127.0.0.1", 27000);
+                       }
+                   }
+                   else if (input == "start" && s.socketReady == false)
+                   {
+                       s.Server("127.0.0.1", 27000);
+            
+                   }
+                   else if (input == "stop" && s.socketReady == true) // remove clients
+                   {
 
-            Console.ReadKey();
-            s._socket.Close(); //Fixed closing bug (System.ObjectDisposedException)
-                               //Bugfix allows to relaunch server
-            Console.WriteLine("Closed Server \n Press any key to exit");
-            Console.ReadKey();
+                       try
+                       {
+                        // first send last packets
+                        s.sendToOnlineClients(s.udpSClient, "3☺3");
+                        s._socket.Shutdown(SocketShutdown.Both);
+                    }
+                       finally
+                       {
+                           s.udpSClient.Close();
+                           s._socket.Close();
+                           s = new UDPSocket(64, "Anan's Server");
+                       }
+
+                }
+                   else if (input == "exit" || input == "quit")
+                   {
+                     try
+                     {
+                        // first send last packets
+                        s.sendToOnlineClients(s.udpSClient, "3☺3");
+                        s._socket.Shutdown(SocketShutdown.Both);
+                    }
+                     finally
+                     {
+                         s.udpSClient.Close();
+                         s._socket.Close();
+                     }
+                    Environment.Exit(0);
+                   }
+            
+                }
+
+            Console.ReadLine();
+
+
         }
     }
 

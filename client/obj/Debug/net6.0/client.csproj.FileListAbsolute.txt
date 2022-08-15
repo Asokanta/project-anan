@@ -13,3 +13,18 @@ D:\c-sharp\client\obj\Debug\net6.0\refint\client.dll
 D:\c-sharp\client\obj\Debug\net6.0\client.pdb
 D:\c-sharp\client\obj\Debug\net6.0\client.genruntimeconfig.cache
 D:\c-sharp\client\obj\Debug\net6.0\ref\client.dll
+D:\csharp yedek\client\bin\Debug\net6.0\client.exe
+D:\csharp yedek\client\bin\Debug\net6.0\client.deps.json
+D:\csharp yedek\client\bin\Debug\net6.0\client.runtimeconfig.json
+D:\csharp yedek\client\bin\Debug\net6.0\client.dll
+D:\csharp yedek\client\bin\Debug\net6.0\client.pdb
+D:\csharp yedek\client\obj\Debug\net6.0\client.csproj.AssemblyReference.cache
+D:\csharp yedek\client\obj\Debug\net6.0\client.GeneratedMSBuildEditorConfig.editorconfig
+D:\csharp yedek\client\obj\Debug\net6.0\client.AssemblyInfoInputs.cache
+D:\csharp yedek\client\obj\Debug\net6.0\client.AssemblyInfo.cs
+D:\csharp yedek\client\obj\Debug\net6.0\client.csproj.CoreCompileInputs.cache
+D:\csharp yedek\client\obj\Debug\net6.0\client.dll
+D:\csharp yedek\client\obj\Debug\net6.0\refint\client.dll
+D:\csharp yedek\client\obj\Debug\net6.0\client.pdb
+D:\csharp yedek\client\obj\Debug\net6.0\client.genruntimeconfig.cache
+D:\csharp yedek\client\obj\Debug\net6.0\ref\client.dll

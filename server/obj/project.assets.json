@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c-sharp\\server\\server.csproj",
+      "projectUniqueName": "D:\\csharp yedek\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "D:\\c-sharp\\server\\server.csproj",
+      "projectPath": "D:\\csharp yedek\\server\\server.csproj",
       "packagesPath": "C:\\Users\\mta\\.nuget\\packages\\",
-      "outputPath": "D:\\c-sharp\\server\\obj\\",
+      "outputPath": "D:\\csharp yedek\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mta\\AppData\\Roaming\\NuGet\\NuGet.Config",
