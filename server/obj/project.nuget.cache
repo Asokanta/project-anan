@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5lOTMNoJ11QLAU225QU//54LFFiZSNpLsrlmw1RUIrU9x7Ur/nn7fmL8tJe+pWBnAeU4ZW4u3/o1ZSbyDYYESg==",
+  "dgSpecHash": "zSixgPf1CcJrnYTcp8VfguZkvdfG1EJCf07p0jh3EF74AXMUOHhPTKNkbQCjlJFV+EfceRMsTzb6WV1RW9/SmQ==",
   "success": true,
-  "projectFilePath": "D:\\csharp yedek\\server\\server.csproj",
+  "projectFilePath": "D:\\c-sharp\\project-anan\\server\\server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

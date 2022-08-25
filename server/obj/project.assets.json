@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\csharp yedek\\server\\server.csproj",
+      "projectUniqueName": "D:\\c-sharp\\project-anan\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "D:\\csharp yedek\\server\\server.csproj",
+      "projectPath": "D:\\c-sharp\\project-anan\\server\\server.csproj",
       "packagesPath": "C:\\Users\\mta\\.nuget\\packages\\",
-      "outputPath": "D:\\csharp yedek\\server\\obj\\",
+      "outputPath": "D:\\c-sharp\\project-anan\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,7 +51,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -60,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
